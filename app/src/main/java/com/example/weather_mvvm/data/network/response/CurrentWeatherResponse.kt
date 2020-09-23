@@ -1,5 +1,7 @@
-package com.example.weather_mvvm.data.response
+package com.example.weather_mvvm.data.network.response
 
+import com.example.weather_mvvm.data.db.entity.CurrentWeatherEntry
+import com.example.weather_mvvm.data.db.entity.Location
 import com.google.gson.annotations.SerializedName
 
 

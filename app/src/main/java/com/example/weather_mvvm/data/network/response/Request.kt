@@ -1,7 +1,5 @@
-package com.example.weather_mvvm.data.response
+package com.example.weather_mvvm.data.network.response
 
-
-import com.google.gson.annotations.SerializedName
 
 data class Request(
     val language: String,

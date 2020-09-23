@@ -45,6 +45,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.android.support:multidex:2.0.1'
 
+
     //Navigation
     def nav_version = "2.3.0"
     implementation "androidx.navigation:navigation-fragment:$nav_version"
