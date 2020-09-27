@@ -5,18 +5,20 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.weather_mvvm.data.db.entity.CurrentWeatherEntry
+import com.example.weather_mvvm.data.db.entity.WeatherLocation
 
 @Database(
-    entities = [CurrentWeatherEntry::class],
+    entities = [CurrentWeatherEntry::class, WeatherLocation::class],
     version = 3,
     exportSchema = false
 )
-abstract class CurrentWeatherDataBase: RoomDatabase() {
+abstract class WeatherDataBase: RoomDatabase() {
     abstract fun currentWeatherDao() : CurrentWeatherDao
+    abstract fun weatherLocationDao() : WeatherLocationDao
 
     companion object {
         @Volatile
-        private var instance: CurrentWeatherDataBase? = null
+        private var instance: WeatherDataBase? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
@@ -26,7 +28,7 @@ abstract class CurrentWeatherDataBase: RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                CurrentWeatherDataBase::class.java,
+                WeatherDataBase::class.java,
                 "forecast.db"
             )
                 .fallbackToDestructiveMigration()
