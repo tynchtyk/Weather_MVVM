@@ -1,9 +1,9 @@
-package com.example.weather_mvvm.data.network.response
+package com.example.weather_mvvm.data.network
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.weather_mvvm.data.network.ApixuWeatherApiService
+import com.example.weather_mvvm.data.network.response.CurrentWeatherResponse
 import com.example.weather_mvvm.internals.NoConnectivityException
 
 class WeatherNetworkDataSourceImpl(

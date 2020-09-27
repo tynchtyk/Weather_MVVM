@@ -10,9 +10,7 @@ import androidx.lifecycle.Observer
 import com.example.weather_mvvm.R
 import com.example.weather_mvvm.data.network.ApixuWeatherApiService
 import com.example.weather_mvvm.data.network.ConnectivityInterceptorImpl
-import com.example.weather_mvvm.data.network.response.WeatherNetworkDataSource
-import com.example.weather_mvvm.data.network.response.WeatherNetworkDataSourceImpl
-import com.example.weather_mvvm.internals.NoConnectivityException
+import com.example.weather_mvvm.data.network.WeatherNetworkDataSourceImpl
 import kotlinx.android.synthetic.main.current_weather_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -40,9 +38,12 @@ class CurrentWeatherFragment : Fragment() {
         // TODO: Use the ViewModel
         val apiService =
             ApixuWeatherApiService(ConnectivityInterceptorImpl(this.requireContext()))
-        val weatherNetworkDataSource = WeatherNetworkDataSourceImpl(apiService)
+        val weatherNetworkDataSource =
+            WeatherNetworkDataSourceImpl(
+                apiService
+            )
 
-        weatherNetworkDataSource.downloadCurrentWeather.observe(viewLifecycleOwner, Observer {
+        weatherNetworkDataSource.downloadedCurrentWeather.observe(viewLifecycleOwner, Observer {
             textView.text = it.toString()
         })
 

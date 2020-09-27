@@ -11,12 +11,12 @@ import com.example.weather_mvvm.data.db.entity.CurrentWeatherEntry
     version = 1 ,
     exportSchema = false
 )
-abstract class ForecastDataBase: RoomDatabase() {
+abstract class CurrentWeatherDataBase: RoomDatabase() {
     abstract fun currentWeatherDao() : CurrentWeatherDao
 
     companion object {
         @Volatile
-        private var instance: ForecastDataBase? = null
+        private var instance: CurrentWeatherDataBase? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
@@ -26,7 +26,7 @@ abstract class ForecastDataBase: RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                ForecastDataBase::class.java,
+                CurrentWeatherDataBase::class.java,
                 "forecast.db"
             )
                 .build()
