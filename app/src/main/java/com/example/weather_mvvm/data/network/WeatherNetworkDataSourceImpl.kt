@@ -18,6 +18,7 @@ class WeatherNetworkDataSourceImpl(
             val fetchedCurrentWeather = apixuWeatherApiService.getCurrentWeather(location)
                 .await()
             _downloadedCurrentWeather.postValue(fetchedCurrentWeather)
+            Log.e("APIRESPONSE", fetchedCurrentWeather.toString())
         }
         catch (
             e: NoConnectivityException

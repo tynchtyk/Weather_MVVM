@@ -8,7 +8,7 @@ import com.example.weather_mvvm.data.db.entity.CurrentWeatherEntry
 
 @Database(
     entities = [CurrentWeatherEntry::class],
-    version = 1 ,
+    version = 3,
     exportSchema = false
 )
 abstract class CurrentWeatherDataBase: RoomDatabase() {
@@ -29,6 +29,7 @@ abstract class CurrentWeatherDataBase: RoomDatabase() {
                 CurrentWeatherDataBase::class.java,
                 "forecast.db"
             )
+                .fallbackToDestructiveMigration()
                 .build()
     }
 }
