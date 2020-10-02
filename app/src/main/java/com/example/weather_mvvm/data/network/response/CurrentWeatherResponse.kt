@@ -10,7 +10,5 @@ data class CurrentWeatherResponse(
     @SerializedName("current")
     val currentWeatherEntry: CurrentWeatherEntry,
 
-    val location: WeatherLocation,
-
-    val request: Request
+    val location: WeatherLocation
 )

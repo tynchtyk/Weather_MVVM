@@ -1,40 +1,60 @@
 package com.example.weather_mvvm.data.db.entity
 
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
+import com.resocoder.forecastmvvm.data.db.entity.Condition
+
 const val CURRENT_WEATHER_ID = 0
 @Entity (tableName = "current_weather")
 @TypeConverters(ListTypeConverters::class)
 data class CurrentWeatherEntry(
-    val cloudcover: Int,
-    val feelslike: Int,
+    val cloud: Int,
+    @Embedded(prefix = "condition_")
+    val condition: Condition,
+    @SerializedName("feelslike_c")
+    val feelslikeC: Double,
+    @SerializedName("feelslike_f")
+    val feelslikeF: Double,
+    @SerializedName("gust_kph")
+    val gustKph: Double,
+    @SerializedName("gust_mph")
+    val gustMph: Double,
     val humidity: Int,
     @SerializedName("is_day")
-    val isDay: String,
-    @SerializedName("observation_time")
-    val observationTime: String,
-    val precip: Int,
-    val pressure: Int,
-    val temperature: Int,
-    @SerializedName("uv_index")
-    val uvIndex: Int,
-    val visibility: Int,
-    @SerializedName("weather_code")
-    val weatherCode: Int,
-    @SerializedName("weather_descriptions")
-    val weatherDescriptions: List<String>,
-    @SerializedName("weather_icons")
-    val weatherIcons: List<String>,
+    val isDay: Int,
+    @SerializedName("last_updated")
+    val lastUpdated: String,
+    @SerializedName("last_updated_epoch")
+    val lastUpdatedEpoch: Int,
+    @SerializedName("precip_in")
+    val precipIn: Double,
+    @SerializedName("precip_mm")
+    val precipMm: Double,
+    @SerializedName("pressure_in")
+    val pressureIn: Double,
+    @SerializedName("pressure_mb")
+    val pressureMb: Double,
+    @SerializedName("temp_c")
+    val tempC: Double,
+    @SerializedName("temp_f")
+    val tempF: Double,
+    val uv: Double,
+    @SerializedName("vis_km")
+    val visKm: Double,
+    @SerializedName("vis_miles")
+    val visMiles: Double,
     @SerializedName("wind_degree")
     val windDegree: Int,
     @SerializedName("wind_dir")
     val windDir: String,
-    @SerializedName("wind_speed")
-    val windSpeed: Int,
+    @SerializedName("wind_kph")
+    val windKph: Double,
+    @SerializedName("wind_mph")
+    val windMph: Double,
 
     @PrimaryKey(autoGenerate = false)
     val id:Int = CURRENT_WEATHER_ID

@@ -55,13 +55,13 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
 
 
             updateDay()
-            updateTemperatures(it.temperature, it.feelslike)
-            updateCondition(it.weatherDescriptions[0])
-            updatePrecipitation(it.precip)
-            updateWind(it.windDir, it.windSpeed)
-            updateVisibility(it.visibility)
+            updateTemperatures(it.temperature, it.feelsLikeTemperature)
+            updateCondition(it.conditionText)
+            updatePrecipitation(it.precipitationVolume)
+            updateWind(it.windDirection, it.windSpeed)
+            updateVisibility(it.visibilityDistance)
             Glide.with(this@CurrentWeatherFragment)
-                .load(it.weatherIcons[0].toString())
+                .load("http:${it.conditionIconUrl}")
                 .into(imageView_condition_icon)
 
         })
@@ -76,7 +76,7 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
         (activity as? AppCompatActivity)?.supportActionBar?.subtitle = "Today"
     }
 
-    private fun updateTemperatures(temperature : Int, feelslike : Int){
+    private fun updateTemperatures(temperature : Double, feelslike : Double){
         textView_temperature.text = "$temperature°C"
         textView_feels_like_temperature.text = "Feels like $feelslike°C"
     }
@@ -85,15 +85,15 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
         textView_condition.text = condition
     }
 
-    private fun updatePrecipitation(precipitationVolume : Int){
+    private fun updatePrecipitation(precipitationVolume : Double){
         textView_precipitation.text = "Precipitation $precipitationVolume mm"
     }
 
-    private fun updateWind(windDirection : String, windSpeed : Int){
+    private fun updateWind(windDirection : String, windSpeed : Double){
         textView_wind.text = "Wind: $windDirection $windSpeed kph"
     }
 
-    private fun updateVisibility(visibility : Int) {
+    private fun updateVisibility(visibility : Double) {
         textView_visibility.text = "Visibility : $visibility km"
     }
 

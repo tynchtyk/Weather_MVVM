@@ -6,6 +6,8 @@ import android.location.LocationProvider
 import com.example.weather_mvvm.data.db.WeatherDataBase
 import com.example.weather_mvvm.data.network.*
 import com.example.weather_mvvm.data.provider.LocationProviderImpl
+import com.example.weather_mvvm.data.provider.UnitProvider
+import com.example.weather_mvvm.data.provider.UnitProviderImpl
 import com.example.weather_mvvm.data.repository.WeatherRepository
 import com.example.weather_mvvm.data.repository.WeatherRepositoryImpl
 import com.example.weather_mvvm.ui.weather.current.CurrentWeatherViewModelFactory
@@ -32,7 +34,8 @@ class WeatherApplication : Application(), KodeinAware{
         bind() from provider {LocationServices.getFusedLocationProviderClient(instance<Context>())}
         bind<com.example.weather_mvvm.data.provider.LocationProvider>() with singleton { LocationProviderImpl(instance(), instance()) }
         bind<WeatherRepository>() with singleton{ WeatherRepositoryImpl(instance(), instance(), instance(), instance()) }
-        bind() from provider { CurrentWeatherViewModelFactory(instance()) }
+        bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
+        bind() from provider { CurrentWeatherViewModelFactory(instance(), instance()) }
 
 
      }

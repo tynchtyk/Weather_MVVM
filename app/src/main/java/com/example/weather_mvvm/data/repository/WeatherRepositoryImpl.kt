@@ -3,8 +3,8 @@ package com.example.weather_mvvm.data.repository
 import androidx.lifecycle.LiveData
 import com.example.weather_mvvm.data.db.CurrentWeatherDao
 import com.example.weather_mvvm.data.db.WeatherLocationDao
-import com.example.weather_mvvm.data.db.entity.CurrentWeatherEntry
 import com.example.weather_mvvm.data.db.entity.WeatherLocation
+import com.example.weather_mvvm.data.db.unitlocalized.current.UnitSpecificCurrentWeatherEntry
 import com.example.weather_mvvm.data.network.response.CurrentWeatherResponse
 import com.example.weather_mvvm.data.network.WeatherNetworkDataSource
 import com.example.weather_mvvm.data.provider.LocationProvider
@@ -26,10 +26,11 @@ class WeatherRepositoryImpl(
             persistFetchedCurrenWeather(newCurrentWeather)
         }
     }
-    override suspend fun getCurrentWeather(): LiveData<CurrentWeatherEntry> {
+    override suspend fun getCurrentWeather(metric: Boolean): LiveData<out UnitSpecificCurrentWeatherEntry> {
         initWeatherData()
         return  withContext(Dispatchers.IO){
-            return@withContext currentWeatherDao.getWeatherEntry()
+            return@withContext if (metric) currentWeatherDao.getWeatherMetric()
+                                else currentWeatherDao.getWeatherImperial()
         }
     }
 
