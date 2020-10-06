@@ -92,15 +92,15 @@ class FutureListWeatherFragment() : ScopedFragment(), KodeinAware {
 
         groupAdapter.setOnItemClickListener { item, view ->
             (item as? FutureWeatherItem)?.let {
-                //showWeatherDetail(it.weatherEntry.date, view)
+                showWeatherDetail(it.weatherEntry.date, view)
             }
         }
     }
 
     private fun showWeatherDetail(date: LocalDate, view: View) {
-      //  val dateString = LocalDateConverter.dateToString(date)!!
-      //  val actionDetail = FutureListWeatherFragmentDirections.actionDetail(dateString)
-      //  Navigation.findNavController(view).navigate(actionDetail)
+        val dateString = LocalDateConverter.dateToString(date)!!
+        val actionDetail = FutureListWeatherFragmentDirections.actionFutureListWeatherFragmentToFutureDetailFragment(dateString)
+        Navigation.findNavController(view).navigate(actionDetail)
     }
 
 }

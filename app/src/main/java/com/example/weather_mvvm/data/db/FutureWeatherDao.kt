@@ -6,6 +6,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.weather_mvvm.data.db.entity.FutureWeatherEntry
+import com.example.weather_mvvm.data.db.unitlocalized.future.detail.ImperialDetailFutureWeatherEntry
+import com.example.weather_mvvm.data.db.unitlocalized.future.detail.MetricDetailFutureWeatherEntry
 import com.example.weather_mvvm.data.db.unitlocalized.future.list.ImperialSimpleFutureWeatherEntry
 import com.example.weather_mvvm.data.db.unitlocalized.future.list.MetricSimpleFutureWeatherEntry
 import java.time.LocalDate
@@ -21,6 +23,14 @@ interface FutureWeatherDao {
 
     @Query("select * from future_weather where date(date) >= date(:startDate)")
     fun getSimpleWeatherForecastImperial(startDate:org.threeten.bp.LocalDate): LiveData<List<ImperialSimpleFutureWeatherEntry>>
+
+
+    @Query("select * from future_weather where date(date) = date(:startDate)")
+    fun getDetailWeatherForecastMetric(startDate:org.threeten.bp.LocalDate): LiveData<MetricDetailFutureWeatherEntry>
+
+    @Query("select * from future_weather where date(date) = date(:startDate)")
+    fun getDetailWeatherForecastImperial(startDate:org.threeten.bp.LocalDate): LiveData<ImperialDetailFutureWeatherEntry>
+
 
     @Query("select count(id) from future_weather where date(date) >= date(:startDate)")
     fun countFutureWeather(startDate: org.threeten.bp.LocalDate): Int
