@@ -4,16 +4,20 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.weather_mvvm.data.db.entity.CurrentWeatherEntry
+import com.example.weather_mvvm.data.db.entity.FutureWeatherEntry
 import com.example.weather_mvvm.data.db.entity.WeatherLocation
 
 @Database(
-    entities = [CurrentWeatherEntry::class, WeatherLocation::class],
-    version = 3,
+    entities = [CurrentWeatherEntry::class, FutureWeatherEntry::class, WeatherLocation::class],
+    version = 4,
     exportSchema = false
 )
+@TypeConverters(LocalDateConverter::class)
 abstract class WeatherDataBase: RoomDatabase() {
     abstract fun currentWeatherDao() : CurrentWeatherDao
+    abstract fun futureWeatherDao() : FutureWeatherDao
     abstract fun weatherLocationDao() : WeatherLocationDao
 
     companion object {

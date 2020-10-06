@@ -10,7 +10,6 @@ import com.resocoder.forecastmvvm.data.db.entity.Condition
 
 const val CURRENT_WEATHER_ID = 0
 @Entity (tableName = "current_weather")
-@TypeConverters(ListTypeConverters::class)
 data class CurrentWeatherEntry(
     val cloud: Int,
     @Embedded(prefix = "condition_")
