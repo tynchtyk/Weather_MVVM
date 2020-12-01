@@ -9,3 +9,4 @@ Sample weather forecast app using the MVVM architectural pattern.
 5. Glide
 6. Glide transformations
 7. Retrofit2
+8. Gson
