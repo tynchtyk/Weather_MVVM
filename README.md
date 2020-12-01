@@ -1,13 +1,11 @@
-# Weather_MVVM
-Weather_MVVM
+# Wather 
 
-Sample weather forecast application using the MVVM architectural pattern
+Sample weather forecast app using the MVVM architectural pattern.
 
-References
-
-Room
-SQLite
-Retrofit2
-Glide
-Kodein
-Kotlin Coroutines
+## References
+1. Room
+2. Dagger2
+3. RxKotlin / RxAndroid
+5. Glide
+6. Glide transformations
+7. Retrofit2
