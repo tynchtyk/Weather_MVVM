@@ -1,4 +1,4 @@
-# Wather 
+# Weather 
 
 Sample weather forecast app using the MVVM architectural pattern.
 
